@@ -1,0 +1,8 @@
+.MuiAlert-root {
+  max-width: 350px;
+  width: 95%;
+  right: 30px;
+  position: absolute;
+  top: 30px;
+  z-index: 999999;
+}/*# sourceMappingURL=AlertContext.css.map */

@@ -1,0 +1,43 @@
+.cryptoGraph {
+    height: calc(100% - 320px);
+
+    &-maincontainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    &-title {
+        font-size: 24px;
+        color: #fff;
+        text-align: center;
+        padding-inline: 10px;
+
+        @media all and (max-width: 768px) {
+            font-size: 18px;
+        }
+    }
+
+    &-subtitle {
+        font-size: 16px;
+        color: #ccc;
+    }
+
+    &-container {
+        height: 100%;
+    }
+
+    &-details {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+        color: #fff;
+    }
+
+    &-image {
+        width: 50px;
+        margin-bottom: 10px;
+    }
+}
