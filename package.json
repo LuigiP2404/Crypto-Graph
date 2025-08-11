@@ -1,7 +1,7 @@
 {
   "name": "crypto-graphs",
   "version": "0.1.0",
-  "homepage": "https://luigip2404.github.io/CryptoGraph",
+  "homepage": "https://luigip2404.github.io/Crypto-Graph",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.14.0",
