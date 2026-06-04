@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import CircularProgress from '@mui/material/CircularProgress';
 import api from '../../api';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Autocomplete.css';
 import { useAlert } from '../AlertContext/AlertContext';
 import CryptoType from '../../types/CryptoType';
@@ -49,7 +49,7 @@ const Asynchronous: React.FC<AsynchronousProps> = ({ onSelectCrypto }) => {
         setOptions([]);
     };
 
-    React.useEffect(() => {
+    useEffect(() => {
         // wait for the user to stop typing to avoid too many requests
         if (inputValue.length < 3) {
             setOptions([]);
@@ -70,11 +70,15 @@ const Asynchronous: React.FC<AsynchronousProps> = ({ onSelectCrypto }) => {
         return () => clearTimeout(timeoutId);
     }, [inputValue]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (selectedOption) {
             onSelectCrypto(selectedOption);
         }
     }, [selectedOption]);
+
+    useEffect(() => {
+        console.log(options);
+    }, [options]);
 
     return (
         <Autocomplete
@@ -89,6 +93,7 @@ const Asynchronous: React.FC<AsynchronousProps> = ({ onSelectCrypto }) => {
             onChange={(event, newValue) => {
                 setSelectedOption(newValue);
             }}
+            filterOptions={(x) => x}
             isOptionEqualToValue={(option, value) => option.name === value.name}
             getOptionLabel={(option) => option.name}
             options={options}
