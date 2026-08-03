@@ -11,6 +11,10 @@
 # production
 /build
 
+# Sass is compiled by react-scripts (sass-loader); any stray output from an
+# editor-side Sass compiler should not be committed.
+*.css.map
+
 # misc
 .DS_Store
 .env.local
