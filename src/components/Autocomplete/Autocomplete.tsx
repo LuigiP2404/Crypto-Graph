@@ -11,6 +11,11 @@ import CryptoType from '../../types/CryptoType';
 import { formatPrice, formatPercent } from '../../utils/format';
 
 const MIN_QUERY_LENGTH = 3;
+const MAX_RESULTS = 10;
+
+interface SearchCoin {
+    id: string;
+}
 
 const SearchIcon = () => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -36,9 +41,21 @@ const Asynchronous: React.FC<AsynchronousProps> = ({ onSelectCrypto }) => {
 
     const fetchCryptos = async () => {
         try {
+            // /coins/markets only filters by exact name, so the prefix search goes
+            // through /search first and the market data is fetched by id.
+            const search = await api.get('search?query=' + encodeURIComponent(inputValue));
+            const ids = (search.data?.coins ?? [])
+                .slice(0, MAX_RESULTS)
+                .map((coin: SearchCoin) => coin.id)
+                .join(',');
 
-            const response = await api.get('coins/markets?vs_currency=usd&name=' + inputValue);
-            if (response.data && response.data) {
+            if (!ids) {
+                setOptions([]);
+                return;
+            }
+
+            const response = await api.get('coins/markets?vs_currency=usd&ids=' + ids);
+            if (response.data) {
                 setOptions(response.data.map((coin: CryptoType) => ({
                     name: coin.name,
                     symbol: coin.symbol,

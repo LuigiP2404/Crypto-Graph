@@ -11,7 +11,7 @@ const Header = ({ onSelectCrypto }: HeaderProps) => {
     return (
         <header className="header">
             <div className="header-inner">
-                <a className="header-brand" href="/" aria-label="CryptoGraph home">
+                <a className="header-brand" href="/Crypto-Graph" aria-label="CryptoGraph home">
                     <span className="header-mark" aria-hidden="true">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
                             <rect x="4" y="9" width="4" height="8" rx="1.2" />
